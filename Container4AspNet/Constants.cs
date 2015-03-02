@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet
 {
 	public static class Constants
 	{

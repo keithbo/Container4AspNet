@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Keith Bosacker</authors>
+    <owners>Keith Bosacker</owners>
+    <licenseUrl>https://github.com/keithbo/Container4AspNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/keithbo/Container4AspNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Container4Asp.Net Windsor Integration</title>
+    <description>Extensions to the base Container4AspNet framework to enable configuration of Castle Windsor.</description>
+    <tags>Asp.Net IoC Container OWIN Castle Windsor</tags>
+    <dependencies>
+      <dependency id="Castle.Windsor" version="3.3.0" />
+      <dependency id="Container4AspNet" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\$id$.dll" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.pdb" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.xml" target="lib\net45" />
+  </files>
+</package>

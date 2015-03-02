@@ -1,12 +1,8 @@
-﻿using Castle.Windsor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet.Windsor.Mvc
 {
+	using Castle.Windsor;
+	using System;
+
 	public class WindsorMvcViewPageActivator : System.Web.Mvc.IViewPageActivator
 	{
 		private IWindsorContainer _container;

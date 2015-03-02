@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Keith Bosacker</authors>
+    <owners>Keith Bosacker</owners>
+    <licenseUrl>https://github.com/keithbo/Container4AspNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/keithbo/Container4AspNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Container4Asp.Net</title>
+    <description>Container4Asp.Net provides generalized IoC Container integration for Asp.Net and the OWIN stack, allowing for consistent inclusion of IoC implementations into Asp.Net.</description>
+    <tags>Asp.Net IoC Dependency OWIN</tags>
+    <dependencies>
+      <dependency id="Microsoft.Owin" version="3.0.0"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\$id$.dll" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.pdb" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.xml" target="lib\net45" />
+  </files>
+</package>

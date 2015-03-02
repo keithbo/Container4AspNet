@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Keith Bosacker</authors>
+    <owners>Keith Bosacker</owners>
+    <licenseUrl>https://github.com/keithbo/Container4AspNet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/keithbo/Container4AspNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Container4Asp.Net WebApi Windsor Integration</title>
+    <description>Asp.Net WebApi specific configuration of Container4AspNet using Castle Windsor.</description>
+    <tags>Asp.Net IoC Container OWIN Castle Windsor WebApi</tags>
+    <dependencies>
+      <dependency id="Microsoft.Owin.Security.OAuth" version="3.0.0" />
+      <dependency id="Microsoft.AspNet.WebApi.Owin" version="5.2.2" />
+      <dependency id="Microsoft.AspNet.WebApi.Tracing" version="5.2.2" />
+      <dependency id="Container4AspNet.Windsor" version="$version$" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\$configuration$\$id$.dll" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.pdb" target="lib\net45" />
+    <file src="..\bin\$configuration$\$id$.xml" target="lib\net45" />
+  </files>
+</package>

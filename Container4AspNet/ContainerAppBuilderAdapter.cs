@@ -1,15 +1,15 @@
-﻿namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet
 {
 	using Owin;
 	using System;
 	using System.Collections.Generic;
 
-	internal class DependencyContainerAppBuilderAdapter<TContainer> : IAppBuilder
+	internal class ContainerAppBuilderAdapter<TContainer> : IAppBuilder
 	{
 		private IAppBuilder _source;
-		private IDependencyContainerWrapper<TContainer> _container;
+		private IContainerWrapper<TContainer> _container;
 
-		public DependencyContainerAppBuilderAdapter(IAppBuilder source, IDependencyContainerWrapper<TContainer> container)
+		public ContainerAppBuilderAdapter(IAppBuilder source, IContainerWrapper<TContainer> container)
 		{
 			this._source = source;
 			this._container = container;
@@ -22,7 +22,7 @@
 
 		public IAppBuilder New()
 		{
-			return new DependencyContainerAppBuilderAdapter<TContainer>(this._source.New(), this._container);
+			return new ContainerAppBuilderAdapter<TContainer>(this._source.New(), this._container);
 		}
 
 		public IDictionary<string, object> Properties

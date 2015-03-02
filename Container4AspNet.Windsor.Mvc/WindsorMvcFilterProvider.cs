@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet.Windsor.Mvc
 {
 	using Castle.Windsor;
 	using System.Collections.Generic;

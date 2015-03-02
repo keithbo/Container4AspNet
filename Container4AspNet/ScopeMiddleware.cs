@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet
 {
 	using Microsoft.Owin;
 	using System.Threading.Tasks;

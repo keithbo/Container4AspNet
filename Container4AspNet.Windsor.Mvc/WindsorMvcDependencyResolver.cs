@@ -1,14 +1,11 @@
-﻿using Castle.MicroKernel;
-using Castle.Windsor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
-namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet.Windsor.Mvc
 {
+	using Castle.MicroKernel;
+	using Castle.Windsor;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+
 	public class WindsorMvcDependencyResolver : System.Web.Mvc.IDependencyResolver
 	{
 		private IWindsorContainer _container;
@@ -29,14 +26,7 @@ namespace Container4AspNet.DependencyInjection
 
 		public object GetService(Type serviceType)
 		{
-			try
-			{
-				return this._container.Resolve(serviceType);
-			}
-			catch (ComponentNotFoundException)
-			{
-				return this._delegateResolver.GetService(serviceType);
-			}
+			return this._container.Kernel.HasComponent(serviceType) ? this._container.Resolve(serviceType) : this._delegateResolver.GetService(serviceType);
 		}
 
 		public IEnumerable<object> GetServices(Type serviceType)

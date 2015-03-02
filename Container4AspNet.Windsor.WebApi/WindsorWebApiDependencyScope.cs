@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.DependencyInjection
+﻿namespace Container4AspNet.Windsor.WebApi
 {
 	using Castle.MicroKernel;
 	using Castle.MicroKernel.Lifestyle;

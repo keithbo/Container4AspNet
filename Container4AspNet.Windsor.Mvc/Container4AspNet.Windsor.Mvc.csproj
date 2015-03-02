@@ -7,12 +7,13 @@
     <ProjectGuid>{BE9FF40D-4D53-4EBA-AF3E-035DE6CF347E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Container4AspNet</RootNamespace>
+    <RootNamespace>Container4AspNet.Windsor.Mvc</RootNamespace>
     <AssemblyName>Container4AspNet.Windsor.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <BuildPackage>true</BuildPackage>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -26,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Debug\Container4AspNet.Windsor.Mvc.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Release\Container4AspNet.Windsor.Mvc.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
@@ -89,19 +92,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\GlobalFilterMvcConfigurer.cs" />
-    <Compile Include="Configuration\IMvcConfigurer.cs" />
-    <Compile Include="Configuration\AreaMvcConfigurer.cs" />
-    <Compile Include="DependencyInjection\WindsorMvcDependencyResolver.cs" />
-    <Compile Include="DependencyInjection\WindsorMvcExtensions.cs" />
-    <Compile Include="DependencyInjection\WindsorMvcFilterProvider.cs" />
-    <Compile Include="DependencyInjection\WindsorMvcViewPageActivator.cs" />
+    <Compile Include="..\CommonVersionInfo.cs">
+      <Link>Properties\CommonVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="WindsorMvcDependencyResolver.cs" />
+    <Compile Include="WindsorMvcExtensions.cs" />
+    <Compile Include="WindsorMvcFilterProvider.cs" />
+    <Compile Include="WindsorMvcViewPageActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Container4AspNet.Windsor.Mvc.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DependencyInjection\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Container4AspNet\Container4AspNet.csproj">
       <Project>{38a5988f-6c6e-4dc9-8905-41c99999159d}</Project>
