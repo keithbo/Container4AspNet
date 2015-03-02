@@ -4,8 +4,16 @@
 	using Castle.Windsor;
 	using System.Web.Mvc;
 
+	/// <summary>
+	/// Castle Windsor container registration extension methods for Asp.Net MVC
+	/// </summary>
 	public static class WindsorMvcExtensions
 	{
+		/// <summary>
+		/// Maps Windsor to be the dependency resolver for Asp.Net MVC.
+		/// </summary>
+		/// <param name="configurator">WindSorContainerConfigurator</param>
+		/// <returns>WindsorContainerConfigurator for chaining</returns>
 		public static WindsorContainerConfigurator ToMvc(this WindsorContainerConfigurator configurator)
 		{
 			RegisterContainer(configurator.Container);

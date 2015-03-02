@@ -44,32 +44,16 @@
 			return dependencyBuilder;
 		}
 
-		private static void ValidateConfigurator<TContainer, TConfigurator>(TConfigurator configurator)
-			where TConfigurator : IContainerConfigurator<TContainer>
-		{
-			if (configurator.Container == null)
-			{
-				throw new ArgumentException("configurator");
-			}
-			if (configurator.Resolve == null)
-			{
-				throw new ArgumentException("configurator");
-			}
-			if (configurator.ResolveAll == null)
-			{
-				throw new ArgumentException("configurator");
-			}
-		}
-
+		/// <summary>
+		/// Retrieves the currently registered container
+		/// </summary>
+		/// <typeparam name="TContainer">The container type</typeparam>
+		/// <param name="builder">IAppBuilder</param>
+		/// <returns></returns>
 		public static TContainer GetContainer<TContainer>(this IAppBuilder builder)
 			where TContainer : class, IDisposable
 		{
 			return (builder.Properties[Constants.DependencyInjectionProperty] as IContainerWrapper<TContainer>).Container;
-		}
-
-		private static ITypeResolver GetTypeResolver(this IAppBuilder builder)
-		{
-			return builder.Properties[Constants.DependencyInjectionProperty] as ITypeResolver;
 		}
 
 		/// <summary>
@@ -87,6 +71,12 @@
 			return builder;
 		}
 
+		/// <summary>
+		/// Resolves a target type from the registered dependency container
+		/// </summary>
+		/// <typeparam name="TDependency">Type of the dependency to resolve</typeparam>
+		/// <param name="builder">IAppBuilder pipeline</param>
+		/// <returns>Instance of the dependency type or null</returns>
 		public static TDependency Resolve<TDependency>(this IAppBuilder builder)
 			where TDependency : class
 		{
@@ -95,6 +85,13 @@
 			return resolver.ResolveType(typeof(TDependency)) as TDependency;
 		}
 
+		/// <summary>
+		/// Executes a configuration delegate for the target dependency instance
+		/// </summary>
+		/// <typeparam name="TDependency">Type of the dependency to resolve</typeparam>
+		/// <param name="builder">IAppBuilder pipeline</param>
+		/// <param name="configure">delegate for resolving the instance of type TDependency</param>
+		/// <returns>IAppBuilder pipeline</returns>
 		public static IAppBuilder ConfigureDependency<TDependency>(this IAppBuilder builder, Action<TDependency> configure)
 			where TDependency : class
 		{
@@ -103,6 +100,13 @@
 			return builder;
 		}
 
+		/// <summary>
+		/// Executes a configuration delegate for the target dependency instance
+		/// </summary>
+		/// <typeparam name="TDependency">Type of the dependency to resolve</typeparam>
+		/// <param name="builder">IAppBuilder pipeline</param>
+		/// <param name="configure">delegate for resolving the instance of type TDependency with the passed in IAppBuilder instance</param>
+		/// <returns>IAppBuilder pipeline</returns>
 		public static IAppBuilder ConfigureDependency<TDependency>(this IAppBuilder builder, Action<IAppBuilder, TDependency> configure)
 			where TDependency : class
 		{
@@ -111,6 +115,13 @@
 			return builder;
 		}
 
+		/// <summary>
+		/// Executes a configuration delegate for the dependency container
+		/// </summary>
+		/// <typeparam name="TContainer">Type of the dependency container previously registered</typeparam>
+		/// <param name="builder">IAppBuilder pipeline</param>
+		/// <param name="configure">delegate for configuring the dependency container</param>
+		/// <returns>IAppBuilder pipeline</returns>
 		public static IAppBuilder ConfigureContainer<TContainer>(this IAppBuilder builder, Action<TContainer> configure)
 			where TContainer : class, IDisposable
 		{
@@ -119,10 +130,39 @@
 			return builder;
 		}
 
+		/// <summary>
+		/// Registers an IScopeResolver of type TScopeResolver into the IAppBuilder pipeline.
+		/// </summary>
+		/// <typeparam name="TScopeResolver">Implementation of type IScopeResolver</typeparam>
+		/// <param name="builder">IAppBuilder pipeline</param>
+		/// <param name="resolver">TScopeResolver instance</param>
+		/// <returns>IAppBuilder pipeline</returns>
 		public static IAppBuilder UseScopeResolution<TScopeResolver>(this IAppBuilder builder, TScopeResolver resolver)
 			where TScopeResolver : IScopeResolver
 		{
 			return builder.Use<ScopeMiddleware>(resolver);
+		}
+
+		private static ITypeResolver GetTypeResolver(this IAppBuilder builder)
+		{
+			return builder.Properties[Constants.DependencyInjectionProperty] as ITypeResolver;
+		}
+
+		private static void ValidateConfigurator<TContainer, TConfigurator>(TConfigurator configurator)
+			where TConfigurator : IContainerConfigurator<TContainer>
+		{
+			if (configurator.Container == null)
+			{
+				throw new ArgumentException("configurator");
+			}
+			if (configurator.Resolve == null)
+			{
+				throw new ArgumentException("configurator");
+			}
+			if (configurator.ResolveAll == null)
+			{
+				throw new ArgumentException("configurator");
+			}
 		}
 	}
 }

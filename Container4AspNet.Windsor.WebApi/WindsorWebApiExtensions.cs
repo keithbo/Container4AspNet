@@ -12,21 +12,22 @@
 	public static class WindsorWebApiExtensions
 	{
 		/// <summary>
-		/// 
+		/// Delegates the currently registered WindsorContainer as dependency resolver for WebApi
 		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
+		/// <param name="configurator">WindsorContainerConfigurator</param>
+		/// <returns>WindsorContainerConfigurator for chaining</returns>
 		public static WindsorContainerConfigurator ToWebApi(this WindsorContainerConfigurator configurator)
 		{
 			return ToWebApi(configurator, configurator.Container.Resolve<HttpConfiguration>());
 		}
 
 		/// <summary>
-		/// 
+		/// Delegates the currently registered WindsorContainer as the dependency resolver for WebApi
+		/// with an external HttpConfiguration
 		/// </summary>
-		/// <param name="context"></param>
-		/// <param name="configuration"></param>
-		/// <returns></returns>
+		/// <param name="configurator">WindsorContainerConfigurator</param>
+		/// <param name="configuration">HttpConfiguration</param>
+		/// <returns>WindsorContainerConfigurator for chaining</returns>
 		public static WindsorContainerConfigurator ToWebApi(this WindsorContainerConfigurator configurator, HttpConfiguration configuration)
 		{
 			RegisterContainer(configurator.Container, configuration);
@@ -37,8 +38,8 @@
 		/// Extension overload to UseWebApi that forces use of the dependency container to retrieve the active HttpConfiguration to then
 		/// pass along the normal UseWebApi(HttpConfiguration) execution path.
 		/// </summary>
-		/// <param name="builder"></param>
-		/// <returns></returns>
+		/// <param name="builder">IAppBuilder</param>
+		/// <returns>IAppBuilder for chaining</returns>
 		public static IAppBuilder UseWebApi(this IAppBuilder builder)
 		{
 			return builder.UseWebApi(builder.Resolve<HttpConfiguration>());

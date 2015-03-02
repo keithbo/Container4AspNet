@@ -68,9 +68,7 @@
       <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DependencyInjection\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Container4AspNet.nuspec" />
     <None Include="packages.config" />

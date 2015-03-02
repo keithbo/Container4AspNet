@@ -105,9 +105,7 @@
     <None Include="Container4AspNet.Windsor.Mvc.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DependencyInjection\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Container4AspNet\Container4AspNet.csproj">
       <Project>{38a5988f-6c6e-4dc9-8905-41c99999159d}</Project>
