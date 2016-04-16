@@ -57,6 +57,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="ContainerWrapper.cs" />
     <Compile Include="ContainerExtensions.cs" />
+    <Compile Include="DefaultContainerConfigurator.cs" />
     <Compile Include="IContainerConfigurator.cs" />
     <Compile Include="IContainerWrapper.cs" />
     <Compile Include="IScopeResolver.cs" />
