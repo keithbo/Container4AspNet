@@ -8,12 +8,11 @@
     <licenseUrl>https://github.com/keithbo/Container4AspNet/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/keithbo/Container4AspNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <title>Container4Asp.Net MVC Windsor Integration</title>
-    <description>Asp.Net MVC specific configuration of Container4AspNet using Castle Windsor.</description>
-    <tags>Asp.Net IoC Container OWIN Castle Windsor MVC</tags>
+    <title>Container4Asp.Net MVC Integration</title>
+    <description>Asp.Net MVC specific configuration of Container4AspNet.</description>
+    <tags>Asp.Net IoC Container OWIN MVC</tags>
     <dependencies>
       <dependency id="Microsoft.AspNet.Mvc" version="5.2.2" />
-      <dependency id="Container4AspNet.Windsor" version="$version$" />
     </dependencies>
   </metadata>
   <files>
