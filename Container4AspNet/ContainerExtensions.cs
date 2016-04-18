@@ -144,8 +144,7 @@
         public static IAppBuilder ConfigureContainer<TContainer>(this IAppBuilder builder, Action<TContainer> configure)
             where TContainer : class, IDisposable
         {
-            configure.Invoke(builder.GetContainer<TContainer>());
-
+            configure.Invoke(ContainerHelpers.GetContainer<TContainer>(builder));
             return builder;
         }
 
