@@ -1,8 +1,8 @@
-﻿namespace Container4AspNet.Windsor.WebApi
+﻿namespace Container4AspNet.WebApi
 {
-    using Owin;
     using System.Web.Http;
     using System.Web.Http.Dispatcher;
+    using Owin;
 
     /// <summary>
     /// Extension methods specific to WebApi integration into Container4AspNet

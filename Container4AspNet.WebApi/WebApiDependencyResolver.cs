@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.Windsor.WebApi
+﻿namespace Container4AspNet.WebApi
 {
     using System;
     using System.Collections.Generic;

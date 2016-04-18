@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container4AspNet", "Container4AspNet\Container4AspNet.csproj", "{38A5988F-6C6E-4DC9-8905-41C99999159D}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container4AspNet.Windsor", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container4AspNet.Windsor.Mvc", "Container4AspNet.Windsor.Mvc\Container4AspNet.Windsor.Mvc.csproj", "{BE9FF40D-4D53-4EBA-AF3E-035DE6CF347E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container4AspNet.Windsor.WebApi", "Container4AspNet.Windsor.WebApi\Container4AspNet.Windsor.WebApi.csproj", "{DFB79818-3D5F-474C-8A6E-70E140EF130D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container4AspNet.WebApi", "Container4AspNet.WebApi\Container4AspNet.WebApi.csproj", "{DFB79818-3D5F-474C-8A6E-70E140EF130D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
