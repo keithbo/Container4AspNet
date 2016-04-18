@@ -1,24 +1,52 @@
 ﻿namespace Container4AspNet
 {
-	using System;
+    using System;
+    using System.Collections.Generic;
 
-	internal class ContainerWrapper<TContainer> : IContainerWrapper<TContainer>
-	{
-		private IContainerConfigurator<TContainer> _context;
+    internal class ContainerWrapper<TContainer> : IContainerWrapper<TContainer>
+    {
+        public IContainerConfigurator<TContainer> Context { get; }
 
-		public TContainer Container
-		{
-			get { return _context.Container; }
-		}
+        public TContainer Container
+        {
+            get { return Context.Container; }
+        }
 
-		public ContainerWrapper(IContainerConfigurator<TContainer> context)
-		{
-			_context = context;
-		}
+        public ContainerWrapper(IContainerConfigurator<TContainer> context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+            Context = context;
+        }
 
-		public object ResolveType(Type type)
-		{
-			return this._context.Resolve(this.Container, type);
-		}
-	}
+        public bool CanResolve(Type type)
+        {
+            return Context.CanResolve == null || Context.CanResolve(Container, type);
+        }
+
+        public object Resolve(Type type)
+        {
+            return Context.Resolve(Container, type);
+        }
+
+        public IEnumerable<object> ResolveAll(Type type)
+        {
+            return Context.ResolveAll(Container, type);
+        }
+
+        public void Release(object instance)
+        {
+            if (Context.Release != null)
+            {
+                Context.Release(Container, instance);
+            }
+        }
+
+        public IScopeResolver GetScopeResolver()
+        {
+            return Context.ScopeFactory != null ? Context.ScopeFactory(Container) : null;
+        }
+    }
 }
