@@ -55,12 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="ContainerHelpers.cs" />
     <Compile Include="ContainerWrapper.cs" />
     <Compile Include="ContainerExtensions.cs" />
     <Compile Include="DefaultContainerConfigurator.cs" />
     <Compile Include="IContainerConfigurator.cs" />
     <Compile Include="IContainerWrapper.cs" />
     <Compile Include="IScopeResolver.cs" />
+    <Compile Include="IScopeResolverFactory.cs" />
     <Compile Include="ITypeResolver.cs" />
     <Compile Include="ScopeMiddleware.cs" />
     <Compile Include="ContainerAppBuilderAdapter.cs" />

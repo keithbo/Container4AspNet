@@ -39,12 +39,6 @@
     <DocumentationFile>..\bin\Release\Container4AspNet.Windsor.WebApi.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.3.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -88,10 +82,11 @@
     <Compile Include="..\CommonVersionInfo.cs">
       <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="WindsorWebApiDependencyResolver.cs" />
-    <Compile Include="WindsorWebApiDependencyScope.cs" />
-    <Compile Include="WindsorHttpControllerActivator.cs" />
-    <Compile Include="WindsorWebApiExtensions.cs" />
+    <Compile Include="NullWebApiDependencyResolver.cs" />
+    <Compile Include="WebApiDependencyResolver.cs" />
+    <Compile Include="WebApiDependencyScope.cs" />
+    <Compile Include="HttpControllerActivator.cs" />
+    <Compile Include="WebApiExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,10 +98,6 @@
     <ProjectReference Include="..\Container4AspNet\Container4AspNet.csproj">
       <Project>{38a5988f-6c6e-4dc9-8905-41c99999159d}</Project>
       <Name>Container4AspNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Container4AspNet.Windsor\Container4AspNet.Windsor.csproj">
-      <Project>{988660a7-dc15-4615-9fc6-ad7cdb78a00d}</Project>
-      <Name>Container4AspNet.Windsor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

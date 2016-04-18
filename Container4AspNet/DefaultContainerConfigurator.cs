@@ -14,6 +14,11 @@
         public TContainer Container { get; set; }
 
         /// <summary>
+        /// Gets or sets the resolution test method
+        /// </summary>
+        public Func<TContainer, Type, bool> CanResolve { get; set; }
+
+        /// <summary>
         /// Gets and sets the single-instance resolution method
         /// </summary>
         public Func<TContainer, Type, object> Resolve { get; set; }
@@ -22,6 +27,11 @@
         /// Gets and sets the multi-instance resolution method
         /// </summary>
         public Func<TContainer, Type, object[]> ResolveAll { get; set; }
+
+        /// <summary>
+        /// Gets and sets the instance cleanup method
+        /// </summary>
+        public Action<TContainer, object> Release { get; set; }
 
         /// <summary>
         /// Gets and sets the IScopeResolver factory method.

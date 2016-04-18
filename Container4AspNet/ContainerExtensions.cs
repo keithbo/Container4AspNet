@@ -18,18 +18,12 @@
         /// <typeparam name="TConfigurator">IContainerConfigurator implementing type</typeparam>
         /// <param name="builder">IAppBuilder pipeline instance</param>
         /// <param name="container">IoC container implementation to be used</param>
-        /// <param name="configure">delegate targeted at IContainerConfigurator implementation of type TConfigurator</param>
+        /// <param name="configure">delegate targeted at an explicit IContainerConfigurator implementation that receives a TConfigurator instance</param>
         /// <returns>IAppBuilder pipeline</returns>
-        public static IAppBuilder UseContainer<TContainer, TConfigurator, TCommon>(this IAppBuilder builder, TContainer container, Action<TConfigurator> configure)
-            where TContainer : TCommon
-            where TConfigurator : IContainerConfigurator<TCommon>, new()
+        public static IAppBuilder UseContainer<TContainer, TConfigurator>(this IAppBuilder builder, TContainer container, Action<TConfigurator> configure)
+            where TConfigurator : IContainerConfigurator<TContainer>, new()
         {
             return UseContainer(builder, container, new TConfigurator(), c => configure((TConfigurator)c));
-        }
-
-        public static IAppBuilder UseContainer<TContainer>(this IAppBuilder builder, TContainer container, Action<IContainerConfigurator<TContainer>> configure)
-        {
-            return UseContainer(builder, container, new DefaultContainerConfigurator<TContainer>(), configure);
         }
 
         /// <summary>
@@ -38,23 +32,36 @@
         /// container specific configuration methods.
         /// </summary>
         /// <typeparam name="TContainer">IoC container type</typeparam>
-        /// <typeparam name="TConfigurator">IContainerConfigurator implementing type</typeparam>
+        /// <param name="builder">IAppBuilder pipeline instance</param>
+        /// <param name="container">IoC container implementation to be used</param>
+        /// <param name="configure">delegate targeted at IContainerConfigurator implementation of type TConfigurator</param>
+        /// <returns>IAppBuilder pipeline</returns>
+        public static IAppBuilder UseContainer<TContainer>(this IAppBuilder builder, TContainer container, Action<IContainerConfigurator<TContainer>> configure)
+        {
+            return UseContainer(builder, container, null, configure);
+        }
+
+        /// <summary>
+        /// Main entry point for configuring the target IAppBuilder pipeline with the provided dependency container.
+        /// This method forces an implementation of IContainerConfigurator to be used as the basis for specifying downline
+        /// container specific configuration methods.
+        /// </summary>
+        /// <typeparam name="TContainer">IoC container type</typeparam>
         /// <param name="builder">IAppBuilder pipeline instance</param>
         /// <param name="container">IoC container implementation to be used</param>
         /// <param name="configurator">IContainerConfigurator implementation to be used in configuration of container</param>
-        /// <param name="configure">delegate targeted at IContainerConfigurator implementation of type TConfigurator</param>
+        /// <param name="configure">delegate targeted at IContainerConfigurator implementation for container type TContainer</param>
         /// <returns>IAppBuilder pipeline</returns>
-        public static IAppBuilder UseContainer<TContainer, TConfigurator>(this IAppBuilder builder, TContainer container, TConfigurator configurator, Action<IContainerConfigurator<TContainer>> configure)
-            where TConfigurator : IContainerConfigurator<TContainer>
+        public static IAppBuilder UseContainer<TContainer>(this IAppBuilder builder, TContainer container, IContainerConfigurator<TContainer> configurator, Action<IContainerConfigurator<TContainer>> configure)
         {
-            if (configurator == null)
-            {
-                throw new ArgumentNullException("configurator");
-            }
+            configurator = configurator ?? new DefaultContainerConfigurator<TContainer>();
             configurator.Container = container;
-            configure(configurator);
+            if (configure != null)
+            {
+                configure(configurator);
+            }
 
-            ValidateConfigurator(configurator);
+            ContainerHelpers.ValidateConfigurator(configurator);
 
             IContainerWrapper<TContainer> wrapper = new ContainerWrapper<TContainer>(configurator);
             IAppBuilder dependencyBuilder = new ContainerAppBuilderAdapter<TContainer>(builder, wrapper);
@@ -66,20 +73,6 @@
             }
 
             return dependencyBuilder;
-        }
-
-        /// <summary>
-        /// Retrieves the currently registered container
-        /// </summary>
-        /// <typeparam name="TContainer">The container type</typeparam>
-        /// <param name="builder">IAppBuilder</param>
-        /// <returns></returns>
-        public static TContainer GetContainer<TContainer>(this IAppBuilder builder)
-            where TContainer : class, IDisposable
-        {
-            var wrapper = builder.Properties[Constants.DependencyInjectionProperty] as IContainerWrapper<TContainer>;
-
-            return wrapper != null ? wrapper.Container : default(TContainer);
         }
 
         /// <summary>
@@ -106,9 +99,9 @@
         public static TDependency Resolve<TDependency>(this IAppBuilder builder)
             where TDependency : class
         {
-            ITypeResolver resolver = builder.GetTypeResolver();
+            ITypeResolver resolver = ContainerHelpers.GetTypeResolver(builder);
 
-            return resolver.ResolveType(typeof(TDependency)) as TDependency;
+            return resolver.Resolve(typeof(TDependency)) as TDependency;
         }
 
         /// <summary>
@@ -167,27 +160,6 @@
             where TScopeResolver : IScopeResolver
         {
             return builder.Use<ScopeMiddleware>(resolver);
-        }
-
-        private static ITypeResolver GetTypeResolver(this IAppBuilder builder)
-        {
-            return builder.Properties[Constants.DependencyInjectionProperty] as ITypeResolver;
-        }
-
-        private static void ValidateConfigurator<TContainer>(IContainerConfigurator<TContainer> configurator)
-        {
-            if (configurator.Container == null)
-            {
-                throw new ArgumentException("configurator");
-            }
-            if (configurator.Resolve == null)
-            {
-                throw new ArgumentException("configurator");
-            }
-            if (configurator.ResolveAll == null)
-            {
-                throw new ArgumentException("configurator");
-            }
         }
     }
 }

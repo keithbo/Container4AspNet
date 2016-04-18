@@ -15,7 +15,6 @@
       <dependency id="Microsoft.Owin.Security.OAuth" version="3.0.0" />
       <dependency id="Microsoft.AspNet.WebApi.Owin" version="5.2.2" />
       <dependency id="Microsoft.AspNet.WebApi.Tracing" version="5.2.2" />
-      <dependency id="Container4AspNet.Windsor" version="$version$" />
     </dependencies>
   </metadata>
   <files>
