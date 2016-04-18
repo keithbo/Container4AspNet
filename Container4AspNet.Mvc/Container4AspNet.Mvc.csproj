@@ -7,8 +7,8 @@
     <ProjectGuid>{BE9FF40D-4D53-4EBA-AF3E-035DE6CF347E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Container4AspNet.Windsor.Mvc</RootNamespace>
-    <AssemblyName>Container4AspNet.Windsor.Mvc</AssemblyName>
+    <RootNamespace>Container4AspNet.Mvc</RootNamespace>
+    <AssemblyName>Container4AspNet.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -27,7 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Debug\Container4AspNet.Windsor.Mvc.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Debug\Container4AspNet.Mvc.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Release\Container4AspNet.Windsor.Mvc.XML</DocumentationFile>
+    <DocumentationFile>..\bin\Release\Container4AspNet.Mvc.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -90,14 +90,14 @@
       <Link>Properties\CommonVersionInfo.cs</Link>
     </Compile>
     <Compile Include="NullMvcDependencyResolver.cs" />
-    <Compile Include="WindsorMvcDependencyResolver.cs" />
-    <Compile Include="WindsorMvcExtensions.cs" />
-    <Compile Include="WindsorMvcFilterProvider.cs" />
-    <Compile Include="WindsorMvcViewPageActivator.cs" />
+    <Compile Include="MvcDependencyResolver.cs" />
+    <Compile Include="MvcExtensions.cs" />
+    <Compile Include="MvcFilterProvider.cs" />
+    <Compile Include="MvcViewPageActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Container4AspNet.Windsor.Mvc.nuspec" />
+    <None Include="Container4AspNet.Mvc.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

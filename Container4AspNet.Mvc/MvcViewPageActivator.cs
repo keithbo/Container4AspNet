@@ -1,19 +1,19 @@
-﻿namespace Container4AspNet.Windsor.Mvc
+﻿namespace Container4AspNet.Mvc
 {
     using System;
 
     /// <summary>
     /// IViewPageActivator implementation for sourcing MVC page construction through IWindsorContainer
     /// </summary>
-    public class WindsorMvcViewPageActivator : System.Web.Mvc.IViewPageActivator
+    public class MvcViewPageActivator : System.Web.Mvc.IViewPageActivator
     {
         private readonly IContainerWrapper _containerWrapper;
 
         /// <summary>
-        /// Constructs a new WindsorMvcViewPageActivator
+        /// Constructs a new MvcViewPageActivator
         /// </summary>
         /// <param name="containerWrapper">IContainerWrapper</param>
-        public WindsorMvcViewPageActivator(IContainerWrapper containerWrapper)
+        public MvcViewPageActivator(IContainerWrapper containerWrapper)
         {
             _containerWrapper = containerWrapper;
         }

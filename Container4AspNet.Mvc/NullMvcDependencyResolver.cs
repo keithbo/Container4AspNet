@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.Windsor.Mvc
+﻿namespace Container4AspNet.Mvc
 {
     using System;
     using System.Collections.Generic;

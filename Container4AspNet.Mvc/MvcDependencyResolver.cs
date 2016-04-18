@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.Windsor.Mvc
+﻿namespace Container4AspNet.Mvc
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     /// This resolver will use IWindsorContainer and if no type can be resolved will
     /// delegate down the chain to the IDependencyResolver provided if any.
     /// </summary>
-    public class WindsorMvcDependencyResolver : System.Web.Mvc.IDependencyResolver
+    public class MvcDependencyResolver : System.Web.Mvc.IDependencyResolver
     {
         private readonly IContainerWrapper _containerWrapper;
         private readonly System.Web.Mvc.IDependencyResolver _delegateResolver;
@@ -20,22 +20,22 @@
         public static readonly System.Web.Mvc.IDependencyResolver NoDependencyResolver = new NullMvcDependencyResolver();
 
         /// <summary>
-        /// Constructs a new WindsorMvcDependencyResolver with the given IWindsorContainer
+        /// Constructs a new MvcDependencyResolver with the given IWindsorContainer
         /// and using NoDependencyResolver as the chaining delegate.
         /// </summary>
         /// <param name="containerWrapper">IContainerWrapper</param>
-        public WindsorMvcDependencyResolver(IContainerWrapper containerWrapper)
+        public MvcDependencyResolver(IContainerWrapper containerWrapper)
             : this(containerWrapper, null)
         {
         }
 
         /// <summary>
-        /// Constructs a new WindsorMvcDependencyResolver with the given IWindsorContainer
+        /// Constructs a new MvcDependencyResolver with the given IWindsorContainer
         /// and the IDependencyResolver passed in as the delegate.
         /// </summary>
         /// <param name="containerWrapper">IContainerWrapper</param>
         /// <param name="delegateResolver">IDependencyResolver, if null then NoDependencyResolver will be used instead</param>
-        public WindsorMvcDependencyResolver(IContainerWrapper containerWrapper, System.Web.Mvc.IDependencyResolver delegateResolver)
+        public MvcDependencyResolver(IContainerWrapper containerWrapper, System.Web.Mvc.IDependencyResolver delegateResolver)
         {
             _containerWrapper = containerWrapper;
             _delegateResolver = delegateResolver ?? NoDependencyResolver;

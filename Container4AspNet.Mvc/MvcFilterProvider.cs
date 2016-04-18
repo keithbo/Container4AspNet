@@ -1,22 +1,21 @@
-﻿namespace Container4AspNet.Windsor.Mvc
+﻿namespace Container4AspNet.Mvc
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
 
     /// <summary>
     /// IFilterProvider implementation that adapts all IActionFilter instances in the container
     /// out as Filter instances.
     /// </summary>
-    public class WindsorMvcFilterProvider : System.Web.Mvc.IFilterProvider
+    public class MvcFilterProvider : System.Web.Mvc.IFilterProvider
     {
         private readonly IContainerWrapper _containerWrapper;
 
         /// <summary>
-        /// Constructs a new WindsorMvcFilterProvider
+        /// Constructs a new MvcFilterProvider
         /// </summary>
         /// <param name="containerWrapper">IContainerWrapper</param>
-        public WindsorMvcFilterProvider(IContainerWrapper containerWrapper)
+        public MvcFilterProvider(IContainerWrapper containerWrapper)
         {
             _containerWrapper = containerWrapper;
         }
@@ -27,10 +26,10 @@
         /// <param name="controllerContext">ControllerContext</param>
         /// <param name="actionDescriptor">ActionDescriptor</param>
         /// <returns>IEnumerable of Filter instances</returns>
-        public IEnumerable<Filter> GetFilters(ControllerContext controllerContext, ActionDescriptor actionDescriptor)
+        public IEnumerable<System.Web.Mvc.Filter> GetFilters(System.Web.Mvc.ControllerContext controllerContext, System.Web.Mvc.ActionDescriptor actionDescriptor)
         {
-            return _containerWrapper.ResolveAll(typeof(IActionFilter))
-                                    .Select(af => new Filter(af, FilterScope.First, null));
+            return _containerWrapper.ResolveAll(typeof(System.Web.Mvc.IActionFilter))
+                                    .Select(af => new System.Web.Mvc.Filter(af, System.Web.Mvc.FilterScope.First, null));
         }
     }
 }

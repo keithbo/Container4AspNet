@@ -1,4 +1,4 @@
-﻿namespace Container4AspNet.Windsor.Mvc
+﻿namespace Container4AspNet.Mvc
 {
     using System.Web.Mvc;
     using Owin;
@@ -6,7 +6,7 @@
     /// <summary>
     /// Container4AspNet registration extension methods for Asp.Net MVC
     /// </summary>
-    public static class WindsorMvcExtensions
+    public static class MvcExtensions
     {
         /// <summary>
         /// Maps the current container as the dependency resolver for Asp.Net MVC.
@@ -27,10 +27,10 @@
             //// These two components are direct extension points for MVC to resolve types and so we
             //// need to bootstrap requests through to the container
             //container.Register(Component.For<IFilterProvider>()
-            //    .ImplementedBy<WindsorMvcFilterProvider>().LifestylePerWebRequest()
+            //    .ImplementedBy<MvcFilterProvider>().LifestylePerWebRequest()
             //    .DependsOn(Dependency.OnValue<IContainerWrapper>(wrapper)));
 
-            DependencyResolver.SetResolver(new WindsorMvcDependencyResolver(wrapper, DependencyResolver.Current));
+            DependencyResolver.SetResolver(new MvcDependencyResolver(wrapper, DependencyResolver.Current));
         }
     }
 }
